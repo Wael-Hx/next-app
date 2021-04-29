@@ -1,16 +1,28 @@
-import { useColorMode, Switch } from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { useColorMode } from "@chakra-ui/react";
 
 export const DarkModeSwitch = () => {
   const { colorMode, toggleColorMode } = useColorMode();
   const isDark = colorMode === "dark";
+
+  if (isDark) {
+    return (
+      <MoonIcon
+        marginInline="1em"
+        boxSize="1.3em"
+        color="lightblue"
+        cursor="pointer"
+        onClick={toggleColorMode}
+      />
+    );
+  }
   return (
-    <Switch
-      position="fixed"
-      top="1rem"
-      right="1rem"
-      color="green"
-      isChecked={isDark}
-      onChange={toggleColorMode}
+    <SunIcon
+      marginInline="1em"
+      boxSize="1.3em"
+      color="goldenrod"
+      cursor="pointer"
+      onClick={toggleColorMode}
     />
   );
 };
