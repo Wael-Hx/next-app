@@ -1,10 +1,36 @@
-import { Controls, MovieCover, Section, Shadow } from "./Styled";
+import { MovieCover, Section, Shadow } from "./Styled";
 import { data } from "../../data";
 import { Box } from "@chakra-ui/layout";
+import { useRef, MouseEvent, useState } from "react";
 
 const Trending = () => {
+  const slideShowRef = useRef<HTMLDivElement>(null);
+  const mouseDownPos = useRef(0);
+  const scrollPos = useRef(0);
+  const [grab, setGrab] = useState<"grab" | "grabbing">("grab");
+  const [drag, setDrag] = useState(false);
+
+  const mouseDownHandler = (e: MouseEvent) => {
+    setDrag(true);
+    setGrab("grabbing");
+    mouseDownPos.current = e.clientX;
+    if (slideShowRef.current) {
+      scrollPos.current = slideShowRef.current.scrollLeft;
+    }
+  };
+  const mouseMoveHandler = (e: MouseEvent) => {
+    if (drag && slideShowRef.current) {
+      let offset = (e.clientX - mouseDownPos.current) * 3;
+      slideShowRef.current.scrollLeft = scrollPos.current - offset;
+    }
+  };
+
+  const mouseUpHandler = () => {
+    setDrag(false);
+    setGrab("grab");
+  };
   return (
-    <Section>
+    <Section ref={slideShowRef}>
       {data.map((movie) => (
         <Box minW="100%" key={movie.name}>
           <MovieCover
@@ -15,16 +41,14 @@ const Trending = () => {
             objectFit="cover"
             draggable="false"
           />
-          <Shadow />
+          <Shadow
+            grabState={grab}
+            onMouseDown={mouseDownHandler}
+            onMouseMove={mouseMoveHandler}
+            onMouseUp={mouseUpHandler}
+          />
         </Box>
       ))}
-      <Controls>
-        {data.map((movie) => (
-          <a key={movie.name} href={`#${movie.name}`}>
-            <li> </li>
-          </a>
-        ))}
-      </Controls>
     </Section>
   );
 };
