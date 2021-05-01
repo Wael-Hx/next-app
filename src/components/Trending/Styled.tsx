@@ -27,7 +27,7 @@ export const Controls = styled.ul`
   right: 50%;
   margin-top: auto;
   transform: translateX(50%);
-  font-size: 2rem;
+  font-size: 2em;
   color: white;
   filter: drop-shadow(2px 4px 6px black);
   display: flex;
