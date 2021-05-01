@@ -1,16 +1,21 @@
 import { Button } from "@chakra-ui/button";
+import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Box, Flex, Heading, Spacer } from "@chakra-ui/layout";
 import { DarkModeSwitch } from "../DarkModeSwitch";
 
 const Navbar = () => {
+  const bg = useColorModeValue("gray.50", "gray.800");
   return (
     <Flex
       position="sticky"
-      zIndex={2}
+      top="0"
+      zIndex={3}
       alignItems="center"
       as="nav"
       boxShadow="lg"
-      marginBottom="3"
+      marginBottom="5"
+      w="full"
+      bgColor={bg}
     >
       <Heading marginInline="5" fontFamily="Raleway" size="md" p="5px">
         Movies
