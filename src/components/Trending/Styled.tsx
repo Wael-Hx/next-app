@@ -23,9 +23,9 @@ export const MovieCover = styled(Image)`
 `;
 
 export const Controls = styled.ul`
-  position: fixed;
-  bottom: calc(100vh - 41vw);
+  position: sticky;
   right: 50%;
+  margin-top: auto;
   transform: translateX(50%);
   font-size: 2rem;
   color: white;
@@ -33,12 +33,13 @@ export const Controls = styled.ul`
   display: flex;
   justify-content: center;
   list-style-type: circle;
-  & > a {
+  & > li {
     margin-inline: 20px;
+    cursor: pointer;
   }
 `;
 
-export const Shadow = styled.div<{ grabState: "grab" | "grabbing" }>`
+export const Shadow = styled.div<{ grabState?: "grab" | "grabbing" }>`
   position: absolute;
   top: 0;
   bottom: 0;
