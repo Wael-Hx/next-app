@@ -3,7 +3,7 @@ import { data } from "../../data";
 import { MouseEvent, useState, useCallback } from "react";
 import { InView } from "react-intersection-observer";
 
-const Trending = () => {
+const Trending = (props: TrendingProps) => {
   const [slideShowRef, setSlideShowRef] = useState<HTMLElement>();
   const [slides, setSlides] = useState<HTMLDivElement[]>([]);
   const [indicator, setIndicator] = useState(data[0].name);
@@ -36,7 +36,7 @@ const Trending = () => {
   };
   const mouseMoveHandler = (e: MouseEvent) => {
     if (drag && slideShowRef) {
-      let offset = (e.clientX - pos.mouseDownPos) * 3;
+      let offset = (e.clientX - pos.mouseDownPos) * 2;
       slideShowRef.scrollLeft = pos.scrollPos - offset;
     }
   };
@@ -47,7 +47,7 @@ const Trending = () => {
   };
   return (
     <Section ref={carouselRef}>
-      {data.map((movie) => (
+      {data.slice(0, props.limit).map((movie) => (
         <InView
           as="div"
           root={slideShowRef}
@@ -78,13 +78,13 @@ const Trending = () => {
         </InView>
       ))}
       <Controls>
-        {data.map((movie, idx) => (
+        {data.slice(0, props.limit).map((movie, idx) => (
           <li
             key={movie.name}
             style={{
               listStyleType: indicator === movie.name ? "disc" : "circle",
             }}
-            onClick={() => slides[idx].scrollIntoView()}
+            onClick={() => slides[idx].scrollIntoView(false)}
           ></li>
         ))}
       </Controls>
@@ -93,3 +93,7 @@ const Trending = () => {
 };
 
 export default Trending;
+
+interface TrendingProps {
+  limit: number;
+}
