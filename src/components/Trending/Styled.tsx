@@ -34,7 +34,8 @@ export const Controls = styled.ul`
   justify-content: center;
   list-style-type: circle;
   & > li {
-    margin-inline: 20px;
+    list-style-position: inside;
+    color: #38b2ac;
     cursor: pointer;
   }
 `;
