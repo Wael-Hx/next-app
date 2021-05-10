@@ -36,7 +36,7 @@ const Trending = (props: TrendingProps) => {
   };
   const mouseMoveHandler = (e: MouseEvent) => {
     if (drag && slideShowRef) {
-      let offset = (e.clientX - pos.mouseDownPos) * 2;
+      let offset = (e.clientX - pos.mouseDownPos) * 1.5;
       slideShowRef.scrollLeft = pos.scrollPos - offset;
     }
   };
