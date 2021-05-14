@@ -2,6 +2,7 @@ import { MovieCover, Section, Shadow, Controls } from "./Styled";
 import { data } from "../../data";
 import { MouseEvent, useState, useCallback } from "react";
 import { InView } from "react-intersection-observer";
+import DescriptionCard from "../movies/DescriptionCard";
 
 const Trending = (props: TrendingProps) => {
   const [slideShowRef, setSlideShowRef] = useState<HTMLElement>();
@@ -58,7 +59,7 @@ const Trending = (props: TrendingProps) => {
               setIndicator(entry.target.id);
             }
           }}
-          style={{ minWidth: "100%" }}
+          style={{ minWidth: "100%", position: "relative" }}
           key={movie.name}
         >
           <MovieCover
@@ -75,6 +76,7 @@ const Trending = (props: TrendingProps) => {
             onMouseMove={mouseMoveHandler}
             onMouseUp={mouseUpHandler}
           />
+          <DescriptionCard movieDetails={movie} />
         </InView>
       ))}
       <Controls>
