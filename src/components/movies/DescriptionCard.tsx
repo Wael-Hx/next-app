@@ -1,4 +1,4 @@
-import { Box, Flex, Heading, Kbd, Stack, Text } from "@chakra-ui/layout";
+import { Box, Heading, Kbd, Stack, Text } from "@chakra-ui/layout";
 import { Movie } from "../../data";
 import styled from "@emotion/styled";
 import { Button, IconButton } from "@chakra-ui/button";
@@ -7,12 +7,12 @@ import { MdFavoriteBorder } from "react-icons/md";
 
 const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
   const Seperator = () => (
-    <Box color="gray.50" as="span" paddingInline="1ch">
+    <Box color="gray.50" as="span">
       –
     </Box>
   );
   return (
-    <Section left={["1ch", "2ch", "3ch"]} top={["20%", "40%", "60%"]}>
+    <Section left={["1ch", "2ch", "3ch"]} bottom={["18%", "10%"]}>
       <Heading
         color="gray.50"
         fontFamily="Raleway"
@@ -22,10 +22,17 @@ const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
       >
         {movieDetails.name}
       </Heading>
-      <Text fontSize={["xx-small", "xs"]} color="gray.50">
-        {movieDetails.released}
-      </Text>
-      <Flex w="100%" alignItems="end" fontSize={["xx-small", "xs"]}>
+      <Stack direction="row" spacing={3}>
+        <Text fontSize={["xx-small", "xs"]} color="gray.50">
+          {movieDetails.released}
+        </Text>
+        <Kbd as="span" fontSize={["xx-small", "xs", "small"]}>
+          IMDB|{movieDetails.score.imdb}
+          <sup>/10</sup>
+        </Kbd>
+      </Stack>
+
+      <Stack direction="row" spacing={2} fontSize={["xx-small", "xs"]}>
         <Kbd className="rating" as="span">
           {movieDetails.rating}
         </Kbd>
@@ -33,7 +40,7 @@ const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
         <Text color="gray.50"> {movieDetails.genres.join(" , ")} </Text>
         <Seperator />
         <Text color="gray.50">{movieDetails.runtime} </Text>
-      </Flex>
+      </Stack>
       <Text
         color="gray.50"
         fontSize="sm"
