@@ -1,4 +1,4 @@
-import { Grid } from "@chakra-ui/layout";
+import { Flex } from "@chakra-ui/layout";
 import { data } from "../../data";
 import NewSection from "../NewSection";
 import MovieCard from "./MovieCard";
@@ -6,18 +6,11 @@ import MovieCard from "./MovieCard";
 const MoviesList = () => {
   return (
     <NewSection title="Trending">
-      <Grid
-        as="section"
-        mt="5"
-        alignItems="center"
-        gap="3"
-        justifyItems="center"
-        gridTemplateColumns="repeat(auto-fit, minmax(240px, 1fr))"
-      >
+      <Flex wrap="wrap" justifyContent="space-evenly" alignItems="center">
         {data.map((movie) => (
           <MovieCard key={movie.name} movieData={movie} />
         ))}
-      </Grid>
+      </Flex>
     </NewSection>
   );
 };
