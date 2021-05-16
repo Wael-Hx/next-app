@@ -13,7 +13,7 @@ const Studios = () => {
         alignItems="center"
         gap="3"
         justifyItems="center"
-        gridTemplateColumns="repeat(auto-fit, minmax(240px, 1fr))"
+        gridTemplateColumns="repeat(auto-fit, minmax(250px, 1fr))"
       >
         <StudioLogo
           backgroundAnimation="/media/videos/DC.mp4"
