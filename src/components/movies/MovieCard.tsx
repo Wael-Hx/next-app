@@ -2,13 +2,13 @@ import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/image";
 import { AspectRatio, Box, Flex, Heading } from "@chakra-ui/layout";
 import { Movie } from "../../data";
+import PopoverInfo from "./PopoverInfo";
 
 const MovieCard = ({ movieData }: MovieCardProps) => {
   return (
     <Box
       as="article"
       w={["150px", "200px", "240px"]}
-      cursor="pointer"
       boxShadow=" 0 0 80px 10px rgba(0, 0, 0, 0.9) inset"
       pos="relative"
       m="8px"
@@ -19,8 +19,21 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
         justifyContent="flex-end"
         alignItems="end"
         p="3"
+        zIndex={1}
       >
-        <InfoOutlineIcon boxSize={4} color="gray.200" />
+        <PopoverInfo
+          isLazy
+          lazyBehavior="unmount"
+          trigger="hover"
+          triggerNode={
+            <InfoOutlineIcon
+              aria-label="movie-info"
+              boxSize={4}
+              color="gray.200"
+            />
+          }
+          movie={movieData}
+        />
       </Flex>
       <AspectRatio w="full" ratio={2 / 3}>
         <Image
