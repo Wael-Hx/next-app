@@ -1,13 +1,13 @@
 import { Flex } from "@chakra-ui/layout";
-import { data } from "../../data";
+import { Movie } from "../../types";
 import NewSection from "../NewSection";
 import MovieCard from "./MovieCard";
 
-const MoviesList = () => {
+const MoviesList = ({ data }: MlProps) => {
   return (
     <NewSection title="Trending">
       <Flex wrap="wrap" justifyContent="space-evenly" alignItems="center">
-        {data.map((movie) => (
+        {data?.map((movie) => (
           <MovieCard key={movie.name} movieData={movie} />
         ))}
       </Flex>
@@ -16,3 +16,7 @@ const MoviesList = () => {
 };
 
 export default MoviesList;
+
+interface MlProps {
+  data: Movie[];
+}

@@ -1,5 +1,5 @@
 import { Box, Heading, Kbd, Stack, Text } from "@chakra-ui/layout";
-import { Movie } from "../../data";
+import { Movie } from "../../types";
 import styled from "@emotion/styled";
 import { Button, IconButton } from "@chakra-ui/button";
 import { BsPlay } from "react-icons/bs";

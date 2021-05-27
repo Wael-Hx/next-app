@@ -1,7 +1,7 @@
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 import { Image } from "@chakra-ui/image";
 import { AspectRatio, Box, Flex, Heading } from "@chakra-ui/layout";
-import { Movie } from "../../data";
+import { Movie } from "../../types";
 import PopoverInfo from "./PopoverInfo";
 
 const MovieCard = ({ movieData }: MovieCardProps) => {

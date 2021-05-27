@@ -1,5 +1,5 @@
 import { MovieCover, Section, Shadow, Controls } from "./Styled";
-import { data } from "../../data";
+import { Movie } from "../../types";
 import { MouseEvent, useState, useCallback } from "react";
 import { InView } from "react-intersection-observer";
 import DescriptionCard from "../movies/DescriptionCard";
@@ -7,7 +7,7 @@ import DescriptionCard from "../movies/DescriptionCard";
 const Trending = (props: TrendingProps) => {
   const [slideShowRef, setSlideShowRef] = useState<HTMLElement>();
   const [slides, setSlides] = useState<HTMLDivElement[]>([]);
-  const [indicator, setIndicator] = useState(data[0].name);
+  const [indicator, setIndicator] = useState(props.data[0].name);
   const carouselRef = useCallback((node: HTMLElement) => {
     if (node) {
       setSlideShowRef(node);
@@ -48,7 +48,7 @@ const Trending = (props: TrendingProps) => {
   };
   return (
     <Section ref={carouselRef}>
-      {data.slice(0, props.limit).map((movie) => (
+      {props.data.slice(0, props.limit).map((movie) => (
         <InView
           as="div"
           root={slideShowRef}
@@ -80,7 +80,7 @@ const Trending = (props: TrendingProps) => {
         </InView>
       ))}
       <Controls>
-        {data.slice(0, props.limit).map((movie, idx) => (
+        {props.data.slice(0, props.limit).map((movie, idx) => (
           <li
             key={movie.name}
             style={{
@@ -98,4 +98,5 @@ export default Trending;
 
 interface TrendingProps {
   limit: number;
+  data: Movie[];
 }
