@@ -1,21 +1,21 @@
-import { Box, Divider, Heading } from "@chakra-ui/layout";
+import { Box, BoxProps, Divider, Heading } from "@chakra-ui/layout";
 import { ReactNode } from "react";
 
-const NewSection = (props: SectionProps) => {
+const NewSection = ({ title, children, m, w, ...rest }: SectionProps) => {
   return (
-    <Box as="section" w="90vw" m="2em auto">
+    <Box {...rest} as="section" w={w ?? "90%"} m={m ?? "2em auto"}>
       <Heading fontFamily="Raleway" fontWeight="light" size="xl" p="7px">
-        {props.title}
+        {title}
       </Heading>
       <Divider orientation="horizontal" />
-      {props.children}
+      {children}
     </Box>
   );
 };
 
 export default NewSection;
 
-interface SectionProps {
+interface SectionProps extends BoxProps {
   title: string;
   children?: ReactNode;
 }
