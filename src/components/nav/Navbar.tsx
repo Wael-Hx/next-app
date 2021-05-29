@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/button";
 import { useColorModeValue } from "@chakra-ui/color-mode";
 import { Box, Flex, Heading, Spacer } from "@chakra-ui/layout";
 import { DarkModeSwitch } from "../DarkModeSwitch";
+import Link from "next/link";
 
 const Navbar = () => {
   const bg = useColorModeValue("gray.50", "gray.800");
@@ -18,7 +19,7 @@ const Navbar = () => {
       bgColor={bg}
     >
       <Heading marginInline="5" fontFamily="Raleway" size="md" p="5px">
-        Movies
+        <Link href="/"> Movies</Link>
       </Heading>
       <Spacer />
       <DarkModeSwitch />
