@@ -13,7 +13,7 @@ import {
 import { ReactNode } from "react";
 import { BsPlay } from "react-icons/bs";
 import { MdFavoriteBorder } from "react-icons/md";
-import { Movie } from "../../data";
+import { Movie } from "../../types";
 
 const PopoverInfo = ({ triggerNode, movie, ...rest }: Props) => {
   return (
