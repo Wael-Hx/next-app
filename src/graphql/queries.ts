@@ -18,3 +18,22 @@ export const MOVIES_QUERY = gql`
     }
   }
 `;
+
+export const GET_MOVIE = gql`
+  query GetMovie($name: String!) {
+    getMovie(name: $name) {
+      name
+      cover
+      poster
+      description
+      genres
+      trailer
+      released
+      rating
+      runtime
+      score {
+        imdb
+      }
+    }
+  }
+`;

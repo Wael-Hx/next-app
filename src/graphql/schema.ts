@@ -23,6 +23,7 @@ const typeDefs = gql`
 
   type Query {
     movies: [Movie]!
+    getMovie(name: String!): Movie
   }
 `;
 
@@ -30,6 +31,10 @@ const resolvers = {
   Query: {
     movies: () => {
       return data;
+    },
+    getMovie: (_: any, { name }: { name: string }) => {
+      const movie = data.find((mov) => mov.name === name);
+      return movie;
     },
   },
 };
