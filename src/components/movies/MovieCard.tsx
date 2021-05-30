@@ -3,6 +3,7 @@ import { Image } from "@chakra-ui/image";
 import { AspectRatio, Box, Flex, Heading } from "@chakra-ui/layout";
 import { Movie } from "../../types";
 import PopoverInfo from "./PopoverInfo";
+import Link from "next/link";
 
 const MovieCard = ({ movieData }: MovieCardProps) => {
   return (
@@ -22,8 +23,6 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
         zIndex={1}
       >
         <PopoverInfo
-          isLazy
-          lazyBehavior="unmount"
           trigger="hover"
           triggerNode={
             <InfoOutlineIcon
@@ -35,6 +34,7 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
           movie={movieData}
         />
       </Flex>
+
       <AspectRatio w="full" ratio={2 / 3}>
         <Image
           zIndex={-1}
@@ -44,6 +44,7 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
           loading="lazy"
         />
       </AspectRatio>
+
       <Heading
         color="gray.50"
         pos="absolute"
@@ -55,7 +56,7 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
         fontSize={["x-small", "xs", "sm"]}
         isTruncated
       >
-        {movieData.name}
+        <Link href={`/movies/${movieData.name}`}>{movieData.name}</Link>
       </Heading>
     </Box>
   );
