@@ -4,6 +4,7 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
 } from "@apollo/client";
+import { offsetLimitPagination } from "@apollo/client/utilities";
 
 let apolloClient: undefined | ApolloClient<NormalizedCacheObject>;
 
@@ -25,7 +26,15 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: createIsomorphLink(),
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({
+      typePolicies: {
+        Query: {
+          fields: {
+            movies: offsetLimitPagination(),
+          },
+        },
+      },
+    }),
   });
 }
 

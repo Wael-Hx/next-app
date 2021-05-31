@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
 export const MOVIES_QUERY = gql`
-  query movies {
-    movies {
+  query movies($offset: Int, $limit: Int) {
+    movies(offset: $offset, limit: $limit) {
       name
       cover
       poster
