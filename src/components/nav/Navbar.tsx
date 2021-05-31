@@ -24,7 +24,13 @@ const Navbar = () => {
       <Spacer />
       <DarkModeSwitch />
       <Box>
-        <Button fontFamily="Raleway" colorScheme="teal" p="3" margin="3">
+        <Button
+          fontFamily="Raleway"
+          fontWeight="light"
+          colorScheme="telegram"
+          p="3"
+          margin="3"
+        >
           Log In
         </Button>
       </Box>

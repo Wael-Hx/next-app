@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 import { Button, IconButton } from "@chakra-ui/button";
 import { BsPlay } from "react-icons/bs";
 import { MdFavoriteBorder } from "react-icons/md";
+import Link from "next/link";
 
 const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
   const Seperator = () => (
@@ -12,7 +13,11 @@ const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
     </Box>
   );
   return (
-    <Section left={["1ch", "2ch", "3ch"]} bottom={["18%", "10%"]}>
+    <Section
+      textShadow="black 1px 0px 10px"
+      left={["1ch", "2ch", "3ch"]}
+      bottom={["18%", "10%"]}
+    >
       <Heading
         color="gray.50"
         fontFamily="Raleway"
@@ -20,20 +25,29 @@ const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
         fontSize={["md", "2xl", "4xl"]}
         isTruncated
       >
-        {movieDetails.name}
+        <Link href={`/movies/${movieDetails.name}`}>{movieDetails.name}</Link>
       </Heading>
+
       <Stack direction="row" spacing={3}>
         <Text fontSize={["xx-small", "xs"]} color="gray.50">
           {movieDetails.released}
         </Text>
-        <Kbd as="span" fontSize={["xx-small", "xs", "small"]}>
+        <Kbd
+          textShadow="rgba(50, 50, 50, 0.5) 1px 0px 10px"
+          as="span"
+          fontSize={["xx-small", "xs", "small"]}
+        >
           IMDB|{movieDetails.score.imdb}
           <sup>/10</sup>
         </Kbd>
       </Stack>
 
       <Stack direction="row" spacing={2} fontSize={["xx-small", "xs"]}>
-        <Kbd className="rating" as="span">
+        <Kbd
+          textShadow="rgba(50, 50, 50, 0.5) 1px 0px 10px"
+          className="rating"
+          as="span"
+        >
           {movieDetails.rating}
         </Kbd>
         <Seperator />

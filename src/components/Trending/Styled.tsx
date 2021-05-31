@@ -20,6 +20,7 @@ export const Section = styled.section`
 export const MovieCover = styled(Image)`
   scroll-snap-align: start;
   user-select: none;
+  opacity: 0.85;
 `;
 
 export const Controls = styled.ul`

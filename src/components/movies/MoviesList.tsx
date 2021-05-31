@@ -5,7 +5,7 @@ import MovieCard from "./MovieCard";
 
 const MoviesList = ({ data }: MlProps) => {
   return (
-    <NewSection title="Trending">
+    <NewSection w={["full", "90", "83%"]} title="Trending">
       <Flex wrap="wrap" justifyContent="space-evenly" alignItems="center">
         {data?.map((movie) => (
           <MovieCard key={movie.name} movieData={movie} />

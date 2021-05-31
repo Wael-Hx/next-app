@@ -7,7 +7,7 @@ import StudioLogo from "./StudioLogo";
 const Studios = () => {
   const color = useColorModeValue("black", "white");
   return (
-    <NewSection title="Studios">
+    <NewSection w={["full", "90", "83%"]} title="Studios">
       <Grid
         mt="5"
         alignItems="center"
