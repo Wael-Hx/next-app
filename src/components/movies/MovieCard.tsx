@@ -4,6 +4,7 @@ import { AspectRatio, Box, Flex, Heading } from "@chakra-ui/layout";
 import { Movie } from "../../types";
 import PopoverInfo from "./PopoverInfo";
 import Link from "next/link";
+import { ChakraLink } from "../Trending/Styled";
 
 const MovieCard = ({ movieData }: MovieCardProps) => {
   return (
@@ -38,7 +39,7 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
       <AspectRatio w="full" ratio={2 / 3}>
         <Image
           zIndex={-1}
-          src={movieData.poster}
+          src={`/media/posters/${movieData.name}.jpg`}
           alt={movieData.name}
           fit="cover"
           loading="lazy"
@@ -56,7 +57,9 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
         fontSize={["x-small", "xs", "sm"]}
         isTruncated
       >
-        <Link href={`/movies/${movieData.name}`}>{movieData.name}</Link>
+        <Link href={`/movies/${movieData.name}`} passHref>
+          <ChakraLink>{movieData.name}</ChakraLink>
+        </Link>
       </Heading>
     </Box>
   );

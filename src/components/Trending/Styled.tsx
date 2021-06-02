@@ -1,4 +1,5 @@
 import { Image } from "@chakra-ui/image";
+import { Link } from "@chakra-ui/layout";
 import styled from "@emotion/styled";
 
 export const Section = styled.section`
@@ -17,10 +18,10 @@ export const Section = styled.section`
   }
 `;
 
-export const MovieCover = styled(Image)`
+export const MovieCover = styled(Image)<{ mode: "dark" | "light" }>`
   scroll-snap-align: start;
   user-select: none;
-  opacity: 0.85;
+  opacity: ${(props) => (props.mode === "dark" ? 0.85 : 1)};
 `;
 
 export const Controls = styled.ul`
@@ -50,4 +51,18 @@ export const Shadow = styled.div<{ grabState?: "grab" | "grabbing" }>`
   box-shadow: 0 0 80px 10px rgba(0, 0, 0, 0.9) inset;
   user-select: none;
   cursor: ${(props) => props.grabState};
+`;
+
+export const ChakraLink = styled(Link)`
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
+  &:focus {
+    box-shadow: none;
+  }
+  @media (hover: none) {
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+  }
 `;

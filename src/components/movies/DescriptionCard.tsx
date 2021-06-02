@@ -5,6 +5,7 @@ import { Button, IconButton } from "@chakra-ui/button";
 import { BsPlay } from "react-icons/bs";
 import { MdFavoriteBorder } from "react-icons/md";
 import Link from "next/link";
+import { ChakraLink } from "../Trending/Styled";
 
 const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
   const Seperator = () => (
@@ -24,8 +25,11 @@ const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
         as="h1"
         fontSize={["md", "2xl", "4xl"]}
         isTruncated
+        pos="relative"
       >
-        <Link href={`/movies/${movieDetails.name}`}>{movieDetails.name}</Link>
+        <Link href={`/movies/${movieDetails.name}`} passHref>
+          <ChakraLink>{movieDetails.name}</ChakraLink>
+        </Link>
       </Heading>
 
       <Stack direction="row" spacing={3}>

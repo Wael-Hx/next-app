@@ -3,8 +3,10 @@ import { Movie } from "../../types";
 import { MouseEvent, useState, useCallback } from "react";
 import { InView } from "react-intersection-observer";
 import DescriptionCard from "../movies/DescriptionCard";
+import { useColorMode } from "@chakra-ui/color-mode";
 
 const Trending = (props: TrendingProps) => {
+  const { colorMode } = useColorMode();
   const [slideShowRef, setSlideShowRef] = useState<HTMLElement>();
   const [slides, setSlides] = useState<HTMLDivElement[]>([]);
   const [indicator, setIndicator] = useState(props.data[0].name);
@@ -63,9 +65,10 @@ const Trending = (props: TrendingProps) => {
           key={movie.name}
         >
           <MovieCover
+            mode={colorMode}
             w="100%"
             maxH="100%"
-            src={movie.cover}
+            src={`/media/covers/${movie.name}.jpg`}
             objectFit="cover"
             draggable="false"
           />

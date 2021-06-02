@@ -30,7 +30,10 @@ const MoviePage = (props: MoviePageProps) => {
         <meta name="og:description" content={props.movieData.description} />
       </Head>
       <Navbar />
-      <BackDropImage colorMode={colorMode} src={props.movieData.cover} />
+      <BackDropImage
+        colorMode={colorMode}
+        src={`/media/covers/${props.movieData.name}.jpg`}
+      />
       <Box as="main" w={["93%", "80%"]} m="auto" pb="5">
         <Stack as="section" direction="row" w="full" m="auto" spacing="1ch">
           <Box
@@ -41,7 +44,7 @@ const MoviePage = (props: MoviePageProps) => {
           >
             <AspectRatio w="full" ratio={2 / 3}>
               <Image
-                src={props.movieData.poster}
+                src={`/media/posters/${props.movieData.name}.jpg`}
                 alt={props.movieData.name}
                 fit="cover"
                 loading="lazy"
@@ -53,7 +56,7 @@ const MoviePage = (props: MoviePageProps) => {
               <Heading
                 fontFamily="Raleway"
                 fontSize={["md", "2xl", "4xl"]}
-                as="h2"
+                as="h1"
               >
                 {props.movieData.name}
               </Heading>
