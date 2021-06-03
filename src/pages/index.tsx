@@ -8,7 +8,7 @@ import { Movie } from "../types";
 import { fetchLimitVar, MOVIES_QUERY } from "../graphql/queries";
 import { useState } from "react";
 import LoadMore from "../components/movies/LoadMore";
-import { Center, Heading } from "@chakra-ui/layout";
+import Loading from "../components/nav/Loading";
 
 const fetchAmount = 4;
 
@@ -60,21 +60,8 @@ const Index = () => {
       }
     });
   };
-  if (QueryLoading) {
-    return (
-      <Center minW="full" minH="90vh">
-        <Heading
-          colorScheme="whiteAlpha"
-          as="h1"
-          fontFamily="Raleway"
-          fontWeight="medium"
-          fontSize="2xl"
-        >
-          Loading...
-        </Heading>
-      </Center>
-    );
-  }
+
+  if (QueryLoading) return <Loading />;
 
   return (
     <>
