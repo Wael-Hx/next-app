@@ -5,29 +5,28 @@ import Studios from "../components/studios/Studios";
 import Trending from "../components/Trending/Trending";
 import Head from "next/head";
 import { Movie } from "../types";
-import { initializeApollo } from "../graphql/client";
-import { MOVIES_QUERY } from "../graphql/queries";
+import { fetchLimitVar, MOVIES_QUERY } from "../graphql/queries";
 import { useState } from "react";
 import LoadMore from "../components/movies/LoadMore";
+import { Center, Heading } from "@chakra-ui/layout";
 
-const fetchLimit = 8;
 const fetchAmount = 4;
 
 const Index = () => {
-  const limit = 5;
-  const [queryLimit, setQueryLimit] = useState(fetchLimit);
+  const [queryLimit, setQueryLimit] = useState(fetchLimitVar());
   const [loading, setLoading] = useState({
     state: false,
     hasMore: true,
   });
-  const { data = { movies: [] }, fetchMore } = useQuery<{ movies: Movie[] }>(
-    MOVIES_QUERY,
-    {
-      variables: {
-        limit: queryLimit,
-      },
-    }
-  );
+  const {
+    data = { movies: [] },
+    fetchMore,
+    loading: QueryLoading,
+  } = useQuery<{ movies: Movie[] }>(MOVIES_QUERY, {
+    variables: {
+      limit: queryLimit,
+    },
+  });
 
   const loadMore = () => {
     setQueryLimit((currentLimit) => {
@@ -38,6 +37,7 @@ const Index = () => {
           ...loading,
           hasMore: false,
         });
+        fetchLimitVar(currentLimit);
         return currentLimit;
       } else {
         setLoading({
@@ -55,11 +55,26 @@ const Index = () => {
             state: false,
           })
         );
-
+        fetchLimitVar(newLimit);
         return newLimit;
       }
     });
   };
+  if (QueryLoading) {
+    return (
+      <Center minW="full" minH="90vh">
+        <Heading
+          colorScheme="whiteAlpha"
+          as="h1"
+          fontFamily="Raleway"
+          fontWeight="medium"
+          fontSize="2xl"
+        >
+          Loading...
+        </Heading>
+      </Center>
+    );
+  }
 
   return (
     <>
@@ -68,7 +83,7 @@ const Index = () => {
         <meta property="og:title" content="Movies DB Design" key="title" />
       </Head>
       <Navbar />
-      <Trending data={data.movies} limit={limit} />
+      <Trending data={data.movies} />
       <Studios />
       <MoviesList data={data.movies} />
       {loading.hasMore && (
@@ -83,21 +98,4 @@ const Index = () => {
   );
 };
 
-export async function getStaticProps() {
-  const apolloClient = initializeApollo();
-
-  await apolloClient.query({
-    query: MOVIES_QUERY,
-    variables: {
-      limit: fetchLimit,
-      offset: 0,
-    },
-  });
-
-  return {
-    props: {
-      initialApolloState: apolloClient.cache.extract(),
-    },
-  };
-}
 export default Index;
