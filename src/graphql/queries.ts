@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import { gql, makeVar } from "@apollo/client";
 
 export const MOVIES_QUERY = gql`
   query movies($offset: Int, $limit: Int) {
@@ -37,3 +37,5 @@ export const GET_MOVIE = gql`
     }
   }
 `;
+
+export const fetchLimitVar = makeVar(8);
