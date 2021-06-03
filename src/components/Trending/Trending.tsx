@@ -5,6 +5,8 @@ import { InView } from "react-intersection-observer";
 import DescriptionCard from "../movies/DescriptionCard";
 import { useColorMode } from "@chakra-ui/color-mode";
 
+const slidesLimit = 5;
+
 const Trending = (props: TrendingProps) => {
   const { colorMode } = useColorMode();
   const [slideShowRef, setSlideShowRef] = useState<HTMLElement>();
@@ -50,7 +52,7 @@ const Trending = (props: TrendingProps) => {
   };
   return (
     <Section ref={carouselRef}>
-      {props.data.slice(0, props.limit).map((movie) => (
+      {props.data.slice(0, slidesLimit).map((movie) => (
         <InView
           as="div"
           root={slideShowRef}
@@ -83,7 +85,7 @@ const Trending = (props: TrendingProps) => {
         </InView>
       ))}
       <Controls>
-        {props.data.slice(0, props.limit).map((movie, idx) => (
+        {props.data.slice(0, slidesLimit).map((movie, idx) => (
           <li
             key={movie.name}
             style={{
@@ -100,6 +102,5 @@ const Trending = (props: TrendingProps) => {
 export default Trending;
 
 interface TrendingProps {
-  limit: number;
   data: Movie[];
 }
