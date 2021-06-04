@@ -73,14 +73,15 @@ const Index = () => {
       <Trending data={data.movies} />
       <Studios />
       <MoviesList data={data.movies} />
-      {loading.hasMore && (
-        <LoadMore
-          w={["90%", "85%"]}
-          isLoading={loading.state}
-          colorScheme="darkred"
-          callBack={loadMore}
-        />
-      )}
+
+      <LoadMore
+        w={["90%", "85%"]}
+        isLoading={loading.state}
+        colorScheme="darkred"
+        callBack={loadMore}
+        isDisabled={!loading.hasMore}
+        disabledText={!loading.hasMore}
+      />
     </>
   );
 };

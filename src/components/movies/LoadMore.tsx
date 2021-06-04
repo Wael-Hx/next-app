@@ -2,7 +2,11 @@ import { Button, ButtonProps } from "@chakra-ui/button";
 import { Center } from "@chakra-ui/layout";
 import React from "react";
 
-const LoadMore = ({ callBack, ...rest }: LoadMoreProps & ButtonProps) => {
+const LoadMore = ({
+  callBack,
+  disabledText,
+  ...rest
+}: LoadMoreProps & ButtonProps) => {
   return (
     <Center w="full" height="10vh">
       <Button
@@ -12,7 +16,7 @@ const LoadMore = ({ callBack, ...rest }: LoadMoreProps & ButtonProps) => {
         {...rest}
         onClick={callBack}
       >
-        Load More
+        {disabledText ? "no more movies 🙄" : "Load More"}
       </Button>
     </Center>
   );
@@ -22,4 +26,5 @@ export default LoadMore;
 
 interface LoadMoreProps {
   callBack: () => void;
+  disabledText: boolean;
 }
