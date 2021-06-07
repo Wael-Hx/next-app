@@ -1,10 +1,11 @@
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { Image } from "@chakra-ui/image";
+import Image from "next/image";
 import { AspectRatio, Box, Flex, Heading } from "@chakra-ui/layout";
 import { Movie } from "../../types";
 import PopoverInfo from "./PopoverInfo";
 import Link from "next/link";
 import { ChakraLink } from "../Trending/Styled";
+import styled from "@emotion/styled";
 
 const MovieCard = ({ movieData }: MovieCardProps) => {
   return (
@@ -37,11 +38,11 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
       </Flex>
 
       <AspectRatio w="full" ratio={2 / 3}>
-        <Image
-          zIndex={-1}
+        <NextImage
+          layout="fill"
           src={`/media/posters/${movieData.name}.jpg`}
           alt={movieData.name}
-          fit="cover"
+          objectFit="cover"
           loading="lazy"
         />
       </AspectRatio>
@@ -70,3 +71,7 @@ export default MovieCard;
 interface MovieCardProps {
   movieData: Movie;
 }
+
+const NextImage = styled(Image)`
+  z-index: -1;
+`;
