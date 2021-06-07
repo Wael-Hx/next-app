@@ -8,6 +8,7 @@ export const DarkModeSwitch = () => {
   if (isDark) {
     return (
       <MoonIcon
+        aria-label="dark mode"
         marginInline="1em"
         boxSize="1.3em"
         color="lightblue"
@@ -18,6 +19,7 @@ export const DarkModeSwitch = () => {
   }
   return (
     <SunIcon
+      aria-label="light mode"
       marginInline="1em"
       boxSize="1.3em"
       color="goldenrod"
