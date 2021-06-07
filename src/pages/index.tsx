@@ -77,7 +77,7 @@ const Index = () => {
       <LoadMore
         w={["90%", "85%"]}
         isLoading={loading.state}
-        colorScheme="darkred"
+        colorScheme="darkpink"
         callBack={loadMore}
         isDisabled={!loading.hasMore}
         disabledText={!loading.hasMore}

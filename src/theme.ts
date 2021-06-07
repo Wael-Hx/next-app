@@ -15,8 +15,7 @@ const config: ThemeConfig = {
 
 const theme = extendTheme<Theme>({
   colors: {
-    black: "#16161D",
-    darkred: {
+    darkpink: {
       100: "#c46697",
       200: "#ba4d85",
       300: "#b13374",
