@@ -44,6 +44,7 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
           alt={movieData.name}
           objectFit="cover"
           loading="lazy"
+          quality={65}
         />
       </AspectRatio>
 
