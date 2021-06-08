@@ -1,17 +1,26 @@
 import { AspectRatio, Container } from "@chakra-ui/layout";
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 import styled from "@emotion/styled";
 import { keyframes } from "@chakra-ui/system";
 
 const StudioLogo = (props: StudioProps) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const mouseEnterhandler = () => videoRef.current?.play();
+  const mouseLeaveHandler = () => videoRef.current?.pause();
   return (
-    <AR w="250px" ratio={21 / 9}>
+    <AR
+      onMouseEnter={mouseEnterhandler}
+      onMouseLeave={mouseLeaveHandler}
+      w="250px"
+      ratio={21 / 9}
+    >
       <>
         <Container w="full" h="full" centerContent>
           {props.logo}
         </Container>
 
-        <video autoPlay muted loop src={props.backgroundAnimation} />
+        <video ref={videoRef} muted loop src={props.backgroundAnimation} />
       </>
     </AR>
   );
