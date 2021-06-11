@@ -4,11 +4,14 @@ import Navbar from "../components/nav/Navbar";
 import Studios from "../components/studios/Studios";
 import Trending from "../components/Trending/Trending";
 import Head from "next/head";
-import { Movie } from "../types";
+import { Movie, NavProps } from "../types";
 import { fetchLimitVar, MOVIES_QUERY } from "../graphql/queries";
 import { useState } from "react";
 import LoadMore from "../components/movies/LoadMore";
 import Loading from "../components/nav/Loading";
+import restoreNavigationState from "../hooks/restoreNavigationState";
+import { GetServerSidePropsContext } from "next";
+import { initializeApollo } from "../graphql/client";
 
 const fetchAmount = 4;
 
@@ -27,6 +30,8 @@ const Index = () => {
       limit: queryLimit,
     },
   });
+
+  restoreNavigationState();
 
   const loadMore = () => {
     setQueryLimit((currentLimit) => {
@@ -87,3 +92,32 @@ const Index = () => {
 };
 
 export default Index;
+
+export async function getServerSideProps({ req }: GetServerSidePropsContext) {
+  let navProps: NavProps = {
+    fetched: 8,
+    scrollPos: 0,
+  };
+
+  if (req.headers.cookie) {
+    try {
+      navProps = JSON.parse(req.headers.cookie);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  const apolloClient = initializeApollo();
+  await apolloClient.query<{ getMovie: Movie }>({
+    query: MOVIES_QUERY,
+    variables: {
+      limit: navProps.fetched,
+    },
+  });
+
+  return {
+    props: {
+      initialApolloState: apolloClient.cache.extract(),
+    },
+  };
+}

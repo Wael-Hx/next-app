@@ -14,3 +14,8 @@ export type Movie = {
     rt: number;
   };
 };
+
+export type NavProps = {
+  fetched: number;
+  scrollPos: number;
+};
