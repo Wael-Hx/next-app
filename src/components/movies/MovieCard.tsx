@@ -5,6 +5,7 @@ import PopoverInfo from "./PopoverInfo";
 import Link from "next/link";
 import { ChakraLink } from "../Trending/Styled";
 import { Image } from "@chakra-ui/image";
+import setPreviousPageState from "../../setPreviousPageState";
 
 const MovieCard = ({ movieData }: MovieCardProps) => {
   return (
@@ -58,7 +59,9 @@ const MovieCard = ({ movieData }: MovieCardProps) => {
         isTruncated
       >
         <Link href={`/movies/${movieData.name}`} passHref>
-          <ChakraLink>{movieData.name}</ChakraLink>
+          <ChakraLink onClick={setPreviousPageState}>
+            {movieData.name}
+          </ChakraLink>
         </Link>
       </Heading>
     </Box>

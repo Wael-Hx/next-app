@@ -6,6 +6,7 @@ import { BsPlay } from "react-icons/bs";
 import { MdFavoriteBorder } from "react-icons/md";
 import Link from "next/link";
 import { ChakraLink } from "../Trending/Styled";
+import setPreviousPageState from "../../setPreviousPageState";
 
 const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
   const Seperator = () => (
@@ -28,7 +29,9 @@ const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
         pos="relative"
       >
         <Link href={`/movies/${movieDetails.name}`} passHref>
-          <ChakraLink>{movieDetails.name}</ChakraLink>
+          <ChakraLink onClick={setPreviousPageState}>
+            {movieDetails.name}
+          </ChakraLink>
         </Link>
       </Heading>
 
