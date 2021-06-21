@@ -71,7 +71,7 @@ const Index = () => {
   return (
     <>
       <Head>
-        <title> Movies DB Design </title>
+        <title> Movies DB Demo </title>
         <meta property="og:title" content="Movies DB Design" key="title" />
       </Head>
       <Navbar />
