@@ -1,4 +1,4 @@
-import { extendTheme, ThemeConfig, Theme } from "@chakra-ui/react";
+import { extendTheme, ThemeConfig } from "@chakra-ui/react";
 import { createBreakpoints } from "@chakra-ui/theme-tools";
 
 const breakpoints = createBreakpoints({
@@ -13,7 +13,7 @@ const config: ThemeConfig = {
   useSystemColorMode: false,
 };
 
-const theme = extendTheme<Theme>({
+const theme = extendTheme({
   colors: {
     darkpink: {
       100: "#c46697",
