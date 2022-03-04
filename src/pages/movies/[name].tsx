@@ -53,27 +53,17 @@ const MoviePage = (props: MoviePageProps) => {
           </Box>
           <VStack pt="1em" align="start" spacing="1em">
             <HStack spacing="1ch">
-              <Heading
-                fontFamily="Raleway"
-                fontSize={["md", "2xl", "4xl"]}
-                as="h1"
-              >
+              <Heading fontFamily="Raleway" fontSize={["md", "2xl", "4xl"]} as="h1">
                 {props.movieData.name}
               </Heading>
               <span> | </span>
-              <Text fontSize={["xx-small", "xs"]}>
-                {props.movieData.released}
-              </Text>
+              <Text fontSize={["xx-small", "xs"]}>{props.movieData.released}</Text>
             </HStack>
             <Text fontSize={["xx-small", "xs"]}>
               {props.movieData.genres.join(" , ")}
             </Text>
             <HStack spacing="2ch">
-              <Kbd
-                fontSize={["xx-small", "xs", "small"]}
-                className="rating"
-                as="span"
-              >
+              <Kbd fontSize={["xx-small", "xs", "small"]} className="rating" as="span">
                 {props.movieData.rating}
               </Kbd>
               <Kbd as="span" fontSize={["xx-small", "xs", "small"]}>
@@ -81,9 +71,7 @@ const MoviePage = (props: MoviePageProps) => {
                 <sup>/10</sup>
               </Kbd>
             </HStack>
-            <Text fontSize={["xx-small", "xs"]}>
-              Runtime: {props.movieData.runtime}
-            </Text>
+            <Text fontSize={["xx-small", "xs"]}>Runtime: {props.movieData.runtime}</Text>
           </VStack>
         </Stack>
         <NewSection title="Synopsis" m="1">
@@ -100,12 +88,7 @@ const MoviePage = (props: MoviePageProps) => {
           </Box>
         </NewSection>
         <NewSection title="Media" m="1">
-          <AspectRatio
-            mt="2em"
-            marginInline="auto"
-            w={["full", "80%"]}
-            ratio={16 / 9}
-          >
+          <AspectRatio mt="2em" marginInline="auto" w={["full", "80%"]} ratio={16 / 9}>
             <iframe
               id="ytplayer"
               width="100%"
