@@ -1,5 +1,7 @@
-movie database app created using:  
-Nextjs , typescript , chackra-ui , apollo & apollo-server-micro
+## About
+
+This is a movie database app made for educational purposes, created using:  
+Nextjs, typescript, chackra-ui, Emotion/react, apollo & apollo-server-micro
 
 ## Install
 
