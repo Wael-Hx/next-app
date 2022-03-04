@@ -1,17 +1,18 @@
 import { useMemo } from "react";
-import {
-  ApolloClient,
-  InMemoryCache,
-  NormalizedCacheObject,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
 import { offsetLimitPagination } from "@apollo/client/utilities";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import { typeDefs, resolvers } from "./schema";
 
 let apolloClient: undefined | ApolloClient<NormalizedCacheObject>;
 
 function createIsomorphLink() {
   if (typeof window === "undefined") {
     const { SchemaLink } = require("@apollo/client/link/schema");
-    const { schema } = require("./schema");
+    const schema = makeExecutableSchema({
+      typeDefs,
+      resolvers,
+    });
     return new SchemaLink({ schema });
   } else {
     const { HttpLink } = require("@apollo/client/link/http");
@@ -38,9 +39,7 @@ function createApolloClient() {
   });
 }
 
-export function initializeApollo(
-  initialState: NormalizedCacheObject | null = null
-) {
+export function initializeApollo(initialState: NormalizedCacheObject | null = null) {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   // If your page has Next.js data fetching methods that use Apollo Client, the initial state
