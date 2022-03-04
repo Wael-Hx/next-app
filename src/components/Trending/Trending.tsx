@@ -1,6 +1,6 @@
 import { MovieCover, Section, Shadow, Controls } from "./Styled";
 import { Movie } from "../../types";
-import { MouseEvent, useState, useCallback } from "react";
+import { MouseEvent, useState, useCallback, useRef } from "react";
 import { InView } from "react-intersection-observer";
 import DescriptionCard from "../movies/DescriptionCard";
 import { useColorMode } from "@chakra-ui/color-mode";
@@ -24,7 +24,7 @@ const Trending = (props: TrendingProps) => {
     }
   }, []);
 
-  const [pos, setPos] = useState({
+  const cd = useRef({
     mouseDownPos: 0,
     scrollPos: 0,
   });
@@ -34,15 +34,15 @@ const Trending = (props: TrendingProps) => {
   const mouseDownHandler = (e: MouseEvent) => {
     setDrag(true);
     setGrab("grabbing");
-    setPos((p) => ({ ...p, mouseDownPos: e.clientX }));
+    cd.current.mouseDownPos = e.clientX;
     if (slideShowRef) {
-      setPos((p) => ({ ...p, scrollPos: slideShowRef.scrollLeft }));
+      cd.current.scrollPos = slideShowRef.scrollLeft;
     }
   };
   const mouseMoveHandler = (e: MouseEvent) => {
     if (drag && slideShowRef) {
-      let offset = (e.clientX - pos.mouseDownPos) * 1.5;
-      slideShowRef.scrollLeft = pos.scrollPos - offset;
+      let offset = (e.clientX - cd.current.mouseDownPos) * 2;
+      slideShowRef.scrollLeft = cd.current.scrollPos - offset;
     }
   };
 
