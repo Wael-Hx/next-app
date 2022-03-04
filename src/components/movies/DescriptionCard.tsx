@@ -8,12 +8,13 @@ import Link from "next/link";
 import { ChakraLink } from "../Trending/Styled";
 import setPreviousPageState from "../../setPreviousPageState";
 
+const Seperator = () => (
+  <Box color="gray.50" as="span">
+    &#45;
+  </Box>
+);
+
 const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
-  const Seperator = () => (
-    <Box color="gray.50" as="span">
-      –
-    </Box>
-  );
   return (
     <Section
       textShadow="black 1px 0px 10px"
@@ -29,9 +30,7 @@ const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
         pos="relative"
       >
         <Link href={`/movies/${movieDetails.name}`} passHref>
-          <ChakraLink onClick={setPreviousPageState}>
-            {movieDetails.name}
-          </ChakraLink>
+          <ChakraLink onClick={setPreviousPageState}>{movieDetails.name}</ChakraLink>
         </Link>
       </Heading>
 
@@ -50,11 +49,7 @@ const DescriptionCard = ({ movieDetails }: DescriptionProps) => {
       </Stack>
 
       <Stack direction="row" spacing={2} fontSize={["xx-small", "xs"]}>
-        <Kbd
-          textShadow="rgba(50, 50, 50, 0.5) 1px 0px 10px"
-          className="rating"
-          as="span"
-        >
+        <Kbd textShadow="rgba(50, 50, 50, 0.5) 1px 0px 10px" className="rating" as="span">
           {movieDetails.rating}
         </Kbd>
         <Seperator />
