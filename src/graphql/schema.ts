@@ -1,8 +1,7 @@
 import { gql } from "apollo-server-core";
-import { makeExecutableSchema } from "graphql-tools";
 import { data } from "../data";
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type Score {
     imdb: Float
     mc: Float
@@ -27,7 +26,7 @@ const typeDefs = gql`
   }
 `;
 
-const resolvers = {
+export const resolvers = {
   Query: {
     movies: (_: any, { offset, limit }: MoviesQueryArgs) => {
       const sortedMovies = data.sort((a, b) => {
@@ -48,11 +47,6 @@ const resolvers = {
     },
   },
 };
-
-export const schema = makeExecutableSchema({
-  typeDefs,
-  resolvers,
-});
 
 interface MoviesQueryArgs {
   limit?: number;
