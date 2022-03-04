@@ -1,7 +1,8 @@
 import { ApolloServer } from "apollo-server-micro";
-import { schema } from "../../graphql/schema";
+import { typeDefs, resolvers } from "../../graphql/schema";
+import { NextApiHandler, NextApiRequest, NextApiResponse } from "next";
 
-const apolloServer = new ApolloServer({ schema });
+const apolloServer = new ApolloServer({ typeDefs, resolvers });
 
 export const config = {
   api: {
@@ -9,4 +10,15 @@ export const config = {
   },
 };
 
-export default apolloServer.createHandler({ path: "/api/graphql" });
+let apolloServerHandler: NextApiHandler;
+
+async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (!apolloServerHandler) {
+    await apolloServer.start();
+    apolloServerHandler = apolloServer.createHandler({ path: "/api/graphql" });
+  }
+
+  return apolloServerHandler(req, res);
+}
+
+export default handler;
